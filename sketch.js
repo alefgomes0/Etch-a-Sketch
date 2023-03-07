@@ -1,16 +1,29 @@
 const body = document.querySelector("body");
+const header1 = document.createElement("h1");
+header1.innerText = "Etch-a-Sketch";
+body.appendChild(header1);
+
 const pageWrapper = document.createElement("div");
 pageWrapper.classList.add("pageWrapper");
 body.appendChild(pageWrapper);
 
+
+const buttonContainer = document.createElement("div");
+buttonContainer.classList.add("buttonContainer");
+pageWrapper.appendChild(buttonContainer);
+
+const resetButton = document.createElement("button");
+resetButton.classList.add("reset");
+resetButton.innerText = "Reset";
+buttonContainer.appendChild(resetButton);
+
+resetButton.addEventListener("click", () => {
+  window.location.reload();
+})
+
 const container = document.createElement("div");
 container.classList.add("container");
 pageWrapper.appendChild(container);
-
-const header1 = document.createElement("h1");
-pageWrapper.appendChild(header1);
-header1.innerText = "Etch-a-Sketch";
-
 let divRow;
 let cell;
 
