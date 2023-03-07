@@ -1,4 +1,16 @@
-const container = document.querySelector(".container");
+const body = document.querySelector("body");
+const pageWrapper = document.createElement("div");
+pageWrapper.classList.add("pageWrapper");
+body.appendChild(pageWrapper);
+
+const container = document.createElement("div");
+container.classList.add("container");
+pageWrapper.appendChild(container);
+
+const header1 = document.createElement("h1");
+pageWrapper.appendChild(header1);
+header1.innerText = "Etch-a-Sketch";
+
 let divRow;
 let cell;
 
@@ -16,4 +28,13 @@ function makeGrid(rows, columns) {
   }
 }
 
-makeGrid(16, 16);
+makeGrid(50, 50);
+
+let rows = document.querySelectorAll(".row");
+let squares = document.querySelectorAll(".cell");
+
+squares.forEach((square) => {
+  square.addEventListener("mouseover", () => {
+    square.style.backgroundColor = "black";
+  })
+})
