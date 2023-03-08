@@ -10,14 +10,23 @@
 </head>
 <body>
   <div class="switchContainer">
-    <p class="sliderText">Random RGB</p>
+    <h3 class="sliderText">Random RGB</h3>
     <label class="switch">
       <input type="checkbox">
       <span class="slider round"></span>
     </label>  
   </div>  
   <div class="gridSliderContainer">
-    <input type="range" min="1" max="100" value="50" class="gridSlider">
+    <span id="rangeValue">50</span>
+    <input class="gridRange" type="range" min="1" max="100" 
+    value="50" class="gridSlider" onChange="rangeSlide(this.value)"
+    onmousemove="rangeSlide(this.value)">
+    <h3>Show Grid?</h5>
+    <input type="radio" name="showGrid" value="showGridOn" class="showGridOn" 
+    checked="checked">
+    <label for="showGridOn">On</label>
+    <input type="radio" name="showGrid" value="showGridOff" class="showGridOff">
+    <label for="showGridOff">Off</label>
   </div>
 </body>
 </html>

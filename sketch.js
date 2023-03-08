@@ -33,6 +33,8 @@ pageWrapper.appendChild(gridSlider);
 
 let divRow;
 let cell;
+let numberOfRows = parseInt(document.querySelector("#rangeValue").innerText);
+let numberOfColumns = parseInt(document.querySelector("#rangeValue").innerText);
 
 
 function makeGrid(rows, columns) {
@@ -48,12 +50,19 @@ function makeGrid(rows, columns) {
   }
 }
 
+makeGrid(numberOfRows, numberOfColumns);
 
-makeGrid(50, 50);
+const inputSlider = document.querySelector(".gridRange");
+inputSlider.addEventListener("mouseup", () => {
+  console.log("vsf");
+  
+})
+
 
 let rows = document.querySelectorAll(".row");
 let squares = document.querySelectorAll(".cell");
-let checkButton = document.querySelector(".slider");
+
+
 const switchContainer = document.querySelector(".switchContainer");
 buttonContainer.appendChild(switchContainer);
 
@@ -71,13 +80,38 @@ function rgbGrid(squareColor) {
     }
 }
 
-const vsf = 1;
+
+const checkButton = document.querySelector(".slider");
+checkButton.addEventListener("click", () => {
+  if (!checkButton.classList.contains("rgbOn")) {
+    checkButton.classList.add("rgbOn");
+  }
+  else {
+    checkButton.classList.remove("rgbOn");
+  }
+})
+
+
+const showGridOn = document.querySelector(".showGridOn");
+const showGridOff = document.querySelector(".showGridOff");
+squares.forEach((square) => {
+  showGridOn.addEventListener("click", () => {
+    container.style.backgroundColor = "#2FD09E";
+    square.style.border = "1px solid black";
+  })
+  showGridOff.addEventListener("click", () => {
+    container.style.backgroundColor = "white";
+    square.style.border = "none";
+  })
+})
+
+
 
 function paintGrid() {
   squares.forEach((square) => {
       square.addEventListener("mousemove", (e) => {
         if (e.shiftKey) {
-          if (vsf == 1) {
+          if (checkButton.classList.contains("rgbOn")) {
             rgbGrid(square);
           }
           else {
@@ -89,3 +123,8 @@ function paintGrid() {
 }
 
 paintGrid();
+
+
+function rangeSlide(value) {
+  document.getElementById("rangeValue").innerText = value;
+}
