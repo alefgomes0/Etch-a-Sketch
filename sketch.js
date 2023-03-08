@@ -17,6 +17,9 @@ resetButton.classList.add("reset");
 resetButton.innerText = "Reset";
 buttonContainer.appendChild(resetButton);
 
+const switchButton = document.querySelector(".switch");
+buttonContainer.appendChild(switchButton);
+
 resetButton.addEventListener("click", () => {
   window.location.reload();
 })
@@ -24,6 +27,10 @@ resetButton.addEventListener("click", () => {
 const container = document.createElement("div");
 container.classList.add("container");
 pageWrapper.appendChild(container);
+
+const gridSlider = document.querySelector(".gridSliderContainer");
+pageWrapper.appendChild(gridSlider);
+
 let divRow;
 let cell;
 
@@ -41,13 +48,44 @@ function makeGrid(rows, columns) {
   }
 }
 
+
 makeGrid(50, 50);
 
 let rows = document.querySelectorAll(".row");
 let squares = document.querySelectorAll(".cell");
+let checkButton = document.querySelector(".slider");
+const switchContainer = document.querySelector(".switchContainer");
+buttonContainer.appendChild(switchContainer);
 
-squares.forEach((square) => {
-  square.addEventListener("mouseover", () => {
-    square.style.backgroundColor = "black";
+
+function rgbGrid(squareColor) {
+  let randomNumber = Math.random();
+    if (randomNumber <= 0.333) {
+      return squareColor.style.backgroundColor = "red";
+    }
+    else if (randomNumber > 0.333 && randomNumber <= 0.666) {
+      return squareColor.style.backgroundColor = "green";
+    }
+    else {
+      return squareColor.style.backgroundColor = "blue";
+    }
+}
+
+const vsf = 1;
+
+function paintGrid() {
+  squares.forEach((square) => {
+      square.addEventListener("mousemove", (e) => {
+        if (e.shiftKey) {
+          if (vsf == 1) {
+            rgbGrid(square);
+          }
+          else {
+          square.style.backgroundColor = "black";
+          }
+        }
+      })
   })
-})
+}
+
+paintGrid();
