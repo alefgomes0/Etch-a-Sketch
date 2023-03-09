@@ -33,8 +33,6 @@ pageWrapper.appendChild(gridSlider);
 
 let divRow;
 let cell;
-let numberOfRows = parseInt(document.querySelector("#rangeValue").innerText);
-let numberOfColumns = parseInt(document.querySelector("#rangeValue").innerText);
 
 
 function makeGrid(rows, columns) {
@@ -50,21 +48,38 @@ function makeGrid(rows, columns) {
   }
 }
 
-makeGrid(numberOfRows, numberOfColumns);
 
 const inputSlider = document.querySelector(".gridRange");
 inputSlider.addEventListener("mouseup", () => {
-  console.log("vsf");
-  
+  const idk = parseInt(document.querySelector("#rangeValue").innerText);
+  sessionStorage.setItem("row", idk); 
+  window.location.reload();
 })
+
+if (sessionStorage.getItem("row") == null) {
+  makeGrid(50, 50);
+}
+else {
+  makeGrid(sessionStorage.getItem("row"), sessionStorage.getItem("row"));
+}
+
+
+document.querySelector("#rangeValue").innerText = sessionStorage.getItem("row");
 
 
 let rows = document.querySelectorAll(".row");
 let squares = document.querySelectorAll(".cell");
-
-
 const switchContainer = document.querySelector(".switchContainer");
 buttonContainer.appendChild(switchContainer);
+
+
+/*const footer = document.createElement("div");
+footer.classList.add("footer");
+body.appendChild(footer);
+const h4 = document.createElement("h4");
+footer.appendChild(h4);
+h4.innerText = "Alexandre Gomes";*/
+
 
 
 function rgbGrid(squareColor) {
@@ -107,19 +122,21 @@ squares.forEach((square) => {
 
 
 
+
+
 function paintGrid() {
   squares.forEach((square) => {
-      square.addEventListener("mousemove", (e) => {
-        if (e.shiftKey) {
+    container.addEventListener("mousedown", () => {
+        square.addEventListener("mousemove", () => {
           if (checkButton.classList.contains("rgbOn")) {
             rgbGrid(square);
           }
           else {
           square.style.backgroundColor = "black";
           }
-        }
-      })
-  })
+        })
+    });
+  });
 }
 
 paintGrid();
@@ -127,4 +144,9 @@ paintGrid();
 
 function rangeSlide(value) {
   document.getElementById("rangeValue").innerText = value;
+}
+
+function oie() {
+  if (sessionStorage.getItem("row") == null) return 50;
+  return sessionStorage.getItem("row");
 }

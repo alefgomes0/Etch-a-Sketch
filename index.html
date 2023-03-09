@@ -17,11 +17,12 @@
     </label>  
   </div>  
   <div class="gridSliderContainer">
-    <span id="rangeValue">50</span>
+    <h3 class="gridSize">Grid Size (RowsxColumns)</h3>
+    <span id="rangeValue"></span>
     <input class="gridRange" type="range" min="1" max="100" 
-    value="50" class="gridSlider" onChange="rangeSlide(this.value)"
+    class="gridSlider" onChange="rangeSlide(this.value)"
     onmousemove="rangeSlide(this.value)">
-    <h3>Show Grid?</h5>
+    <h3>Show Grid?</h3>
     <input type="radio" name="showGrid" value="showGridOn" class="showGridOn" 
     checked="checked">
     <label for="showGridOn">On</label>
