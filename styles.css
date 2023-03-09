@@ -103,8 +103,6 @@ h1 {
   transition: .4s;
 }
 
-
-
 input:checked + .slider {
   background-color: #2196F3;
 }
@@ -166,6 +164,9 @@ h3.gridSize {
   border: 4px solid #333;
 }
 
+.showGridOff {
+  margin-left: 20px;
+}
 
 h3 {
   color: #4f2fd0;

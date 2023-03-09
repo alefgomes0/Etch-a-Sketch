@@ -127,14 +127,17 @@ squares.forEach((square) => {
 function paintGrid() {
   squares.forEach((square) => {
     container.addEventListener("mousedown", () => {
-        square.addEventListener("mousemove", () => {
-          if (checkButton.classList.contains("rgbOn")) {
-            rgbGrid(square);
-          }
-          else {
+      square.addEventListener("mousemove", (event) => {
+        if (event.shiftKey) {
+          return 1;
+        }
+        else if (checkButton.classList.contains("rgbOn")) {
+          rgbGrid(square);
+        }
+        else {
           square.style.backgroundColor = "black";
-          }
-        })
+        }
+      })
     });
   });
 }
@@ -146,7 +149,6 @@ function rangeSlide(value) {
   document.getElementById("rangeValue").innerText = value;
 }
 
-function oie() {
-  if (sessionStorage.getItem("row") == null) return 50;
-  return sessionStorage.getItem("row");
+function rowSize() {
+  return parseInt(sessionStorage.getItem("row"));
 }
