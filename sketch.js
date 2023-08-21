@@ -3,10 +3,13 @@ const header1 = document.createElement("h1");
 header1.innerText = "Etch-a-Sketch";
 body.appendChild(header1);
 
+const header5 = document.createElement("h5");
+header5.innerText = "Press left-click to start drawing. Press shift to stop drawing";
+body.appendChild(header5);
+
 const pageWrapper = document.createElement("div");
 pageWrapper.classList.add("pageWrapper");
 body.appendChild(pageWrapper);
-
 
 const buttonContainer = document.createElement("div");
 buttonContainer.classList.add("buttonContainer");
@@ -22,7 +25,7 @@ buttonContainer.appendChild(switchButton);
 
 resetButton.addEventListener("click", () => {
   window.location.reload();
-})
+});
 
 const container = document.createElement("div");
 container.classList.add("container");
@@ -33,7 +36,6 @@ pageWrapper.appendChild(gridSlider);
 
 let divRow;
 let cell;
-
 
 function makeGrid(rows, columns) {
   for (let i = 0; i < rows; i++) {
@@ -48,30 +50,25 @@ function makeGrid(rows, columns) {
   }
 }
 
-
 const inputSlider = document.querySelector(".gridRange");
 inputSlider.addEventListener("mouseup", () => {
   const idk = parseInt(document.querySelector("#rangeValue").innerText);
-  sessionStorage.setItem("row", idk); 
+  sessionStorage.setItem("row", idk);
   window.location.reload();
-})
+});
 
 if (sessionStorage.getItem("row") == null) {
   makeGrid(50, 50);
-}
-else {
+} else {
   makeGrid(sessionStorage.getItem("row"), sessionStorage.getItem("row"));
 }
 
-
 document.querySelector("#rangeValue").innerText = sessionStorage.getItem("row");
-
 
 let rows = document.querySelectorAll(".row");
 let squares = document.querySelectorAll(".cell");
 const switchContainer = document.querySelector(".switchContainer");
 buttonContainer.appendChild(switchContainer);
-
 
 /*const footer = document.createElement("div");
 footer.classList.add("footer");
@@ -80,32 +77,25 @@ const h4 = document.createElement("h4");
 footer.appendChild(h4);
 h4.innerText = "Alexandre Gomes";*/
 
-
-
 function rgbGrid(squareColor) {
   let randomNumber = Math.random();
-    if (randomNumber <= 0.333) {
-      return squareColor.style.backgroundColor = "red";
-    }
-    else if (randomNumber > 0.333 && randomNumber <= 0.666) {
-      return squareColor.style.backgroundColor = "green";
-    }
-    else {
-      return squareColor.style.backgroundColor = "blue";
-    }
+  if (randomNumber <= 0.333) {
+    return (squareColor.style.backgroundColor = "red");
+  } else if (randomNumber > 0.333 && randomNumber <= 0.666) {
+    return (squareColor.style.backgroundColor = "green");
+  } else {
+    return (squareColor.style.backgroundColor = "blue");
+  }
 }
-
 
 const checkButton = document.querySelector(".slider");
 checkButton.addEventListener("click", () => {
   if (!checkButton.classList.contains("rgbOn")) {
     checkButton.classList.add("rgbOn");
-  }
-  else {
+  } else {
     checkButton.classList.remove("rgbOn");
   }
-})
-
+});
 
 const showGridOn = document.querySelector(".showGridOn");
 const showGridOff = document.querySelector(".showGridOff");
@@ -113,16 +103,12 @@ squares.forEach((square) => {
   showGridOn.addEventListener("click", () => {
     container.style.backgroundColor = "#2FD09E";
     square.style.border = "1px solid black";
-  })
+  });
   showGridOff.addEventListener("click", () => {
     container.style.backgroundColor = "white";
     square.style.border = "none";
-  })
-})
-
-
-
-
+  });
+});
 
 function paintGrid() {
   squares.forEach((square) => {
@@ -130,20 +116,17 @@ function paintGrid() {
       square.addEventListener("mousemove", (event) => {
         if (event.shiftKey) {
           return 1;
-        }
-        else if (checkButton.classList.contains("rgbOn")) {
+        } else if (checkButton.classList.contains("rgbOn")) {
           rgbGrid(square);
-        }
-        else {
+        } else {
           square.style.backgroundColor = "black";
         }
-      })
+      });
     });
   });
 }
 
 paintGrid();
-
 
 function rangeSlide(value) {
   document.getElementById("rangeValue").innerText = value;
